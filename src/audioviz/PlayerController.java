@@ -75,8 +75,6 @@ public class PlayerController implements Initializable {
     
     private Integer numBands = 40;
     private final Double updateInterval = 0.05;
-//    private Duration dragStartTime;
-//    private Duration dragEndTime;
     
     private ArrayList<Visualizer> visualizers;
     private Visualizer currentVisualizer;
@@ -192,7 +190,6 @@ public class PlayerController implements Initializable {
         double ms = ct.toMillis();
         double sec = ms / 1000;
         currentText.setText((new DecimalFormat("##.#").format(sec)));
-        //currentText.setText(ct.toString());
         timeSlider.setValue(ms);
         
         currentVisualizer.update(timestamp, duration, magnitudes, phases);
@@ -234,19 +231,14 @@ public class PlayerController implements Initializable {
         if (mediaPlayer != null)
         {
             mediaPlayer.pause();
-        }
-//        System.out.println("Drag started.");
-//        dragStartTime = mediaPlayer.getCurrentTime();       
+        }    
     }
     
     @FXML
     private void handleEndDrag(Event event) {
- //       System.out.println("Drag ended.");
         if( mediaPlayer != null)
         {
-//        Double sliderValue = 155000.0;
         mediaPlayer.seek(Duration.millis(timeSlider.getValue()));
-//        System.out.println(Duration.millis(timeSlider.getValue()));
         mediaPlayer.play();
         }
     }
