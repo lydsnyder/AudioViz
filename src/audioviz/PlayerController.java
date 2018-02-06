@@ -7,6 +7,7 @@ package audioviz;
 
 import java.io.File;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -165,9 +166,14 @@ public class PlayerController implements Initializable {
     
     private void handleReady() {
         Duration duration = mediaPlayer.getTotalDuration();
-        lengthText.setText(duration.toString());
+        double durMs = duration.toMillis();
+        double durSec = durMs / 1000;
+        lengthText.setText((new DecimalFormat("##.#").format(durSec)));
         Duration ct = mediaPlayer.getCurrentTime();
-        currentText.setText(ct.toString());
+        double ms = ct.toMillis();
+        double sec = ms / 1000;
+        currentText.setText((new DecimalFormat("##.#").format(sec)));
+        //currentText.setText(ct.toString());
         currentVisualizer.start(numBands, vizPane);
         timeSlider.setMin(0);
         timeSlider.setMax(duration.toMillis());
@@ -182,7 +188,9 @@ public class PlayerController implements Initializable {
     private void handleUpdate(double timestamp, double duration, float[] magnitudes, float[] phases) {
         Duration ct = mediaPlayer.getCurrentTime();
         double ms = ct.toMillis();
-        currentText.setText(Double.toString(ms));
+        double sec = ms / 1000;
+        currentText.setText((new DecimalFormat("##.#").format(sec)));
+        //currentText.setText(ct.toString());
         timeSlider.setValue(ms);
         
         currentVisualizer.update(timestamp, duration, magnitudes, phases);

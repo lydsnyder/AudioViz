@@ -36,7 +36,7 @@
             <Text fx:id="currentText" layoutX="86.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <AnchorPane fx:id="vizPane" layoutX="236.0" layoutY="106.0" prefHeight="397.0" prefWidth="550.0" />
             <Text fx:id="errorText" fill="RED" layoutX="25.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" layoutX="25.0" layoutY="203.0" />
+            <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" layoutX="25.0" layoutY="213.0" />
             <Text fx:id="filePathText" layoutX="25.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text fx:id="visualizerNameText" layoutX="450.0" layoutY="569.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
                <font>
