@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -74,6 +75,8 @@ public class PlayerController implements Initializable {
     
     private Integer numBands = 40;
     private final Double updateInterval = 0.05;
+//    private Duration dragStartTime;
+//    private Duration dragEndTime;
     
     private ArrayList<Visualizer> visualizers;
     private Visualizer currentVisualizer;
@@ -173,7 +176,6 @@ public class PlayerController implements Initializable {
         double ms = ct.toMillis();
         double sec = ms / 1000;
         currentText.setText((new DecimalFormat("##.#").format(sec)));
-        //currentText.setText(ct.toString());
         currentVisualizer.start(numBands, vizPane);
         timeSlider.setMin(0);
         timeSlider.setMax(duration.toMillis());
@@ -224,6 +226,28 @@ public class PlayerController implements Initializable {
     private void handleStop(ActionEvent event) {
         if (mediaPlayer != null) {
            mediaPlayer.stop(); 
+        }
+    }
+    
+    @FXML
+    private void handleStartDrag(Event event) {
+        if (mediaPlayer != null)
+        {
+            mediaPlayer.pause();
+        }
+//        System.out.println("Drag started.");
+//        dragStartTime = mediaPlayer.getCurrentTime();       
+    }
+    
+    @FXML
+    private void handleEndDrag(Event event) {
+ //       System.out.println("Drag ended.");
+        if( mediaPlayer != null)
+        {
+//        Double sliderValue = 155000.0;
+        mediaPlayer.seek(Duration.millis(timeSlider.getValue()));
+//        System.out.println(Duration.millis(timeSlider.getValue()));
+        mediaPlayer.play();
         }
     }
 }
